@@ -7,12 +7,26 @@
       "value": 8
     }
   ],
+  "flag_kit_ventilazione_smart": [
+    {
+      "path": "GET_STDT",
+      "key": "STOVETYPE",
+      "operator": "eq",
+      "value": 8
+    },
+    {
+      "path": "GET_STDT",
+      "key": "FAN2TYPE",
+      "operator": "gt",
+      "value": 1
+    }
+  ],
   "flag_modalita_ecostart": [
     {
       "path": "GET_STDT",
       "key": "SYSTEM",
       "operator": "vgt",
-      "value": "2.1.1"
+      "value": "10000.0.0"
     }
   ],
   "flag_sincronizzazione_orario": [
@@ -31,6 +45,16 @@
       "value": 1
     }
   ],
+  "flag_presenza_ecomode": [
+    {
+      "path": "GET_STDT",
+      "key": "MBTYPE",
+      "operator": "in",
+      "value": [
+        0
+      ]
+    }
+  ],
   "flag_impostazione_setpoint": [
     {
       "path": "GET_ALLS",
@@ -39,7 +63,7 @@
       "value": 0
     }
   ],
-  "flag_accensione_macchina": [
+  "flag_presenza_accensione_macchina": [
     {
       "path": "GET_STDT",
       "key": "STOVETYPE",
@@ -48,7 +72,9 @@
         7,
         8
       ]
-    },
+    }
+  ],
+  "flag_accensione_macchina": [
     {
       "path": "GET_ALLS",
       "key": "LSTATUS",
@@ -184,6 +210,60 @@
       "key": "FAN2TYPE",
       "operator": "gt",
       "value": 3
+    }
+  ],
+  "flag_presenza_sonde_temperatura_remote": [
+    {
+      "path": "GET_STDT",
+      "key": "BLEMBMODE",
+      "operator": "in",
+      "value": [
+        7,
+        17
+      ]
+    },
+    {
+      "path": "GET_STDT",
+      "key": "BLEDSPMODE",
+      "operator": "in",
+      "value": [
+        7,
+        17
+      ]
+    }
+  ],
+  "flag_presenza_setpoint_secondo_ventilatore": [
+    {
+      "path": "GET_BTLE",
+      "key": "F3ST",
+      "operator": "gt",
+      "value": 1
+    },
+    {
+      "path": "GET_BTLE",
+      "key": "F3AN",
+      "operator": "in",
+      "value": [
+        2,
+        3
+      ]
+    }
+  ],
+  "flag_presenza_setpoint_terzo_ventilatore": [
+    {
+      "path": "GET_BTLE",
+      "key": "F4ST",
+      "operator": "gt",
+      "value": 1
+    },
+    {
+      "path": "GET_BTLE",
+      "key": "F4AN",
+      "operator": "in",
+      "value": [
+        2,
+        3
+      ]
     }
   ],
   "flag_presenza_sensore_pellet_leveltronic": [
@@ -323,13 +403,21 @@
     "path": "GET_ALLS",
     "key": "T2"
   },
+  "value_temperatura_sonda_combustione_legna": {
+    "path": "GET_ALLS",
+    "key": "T3"
+  },
   "value_temperatura_sonda_uscita_aria": {
     "path": "GET_ALLS",
     "key": "T4"
   },
-  "value_temperatura_sonda_combustione_legna": {
-    "path": "GET_ALLS",
-    "key": "T3"
+  "value_temperatura_sonda_secondo_ventilatore": {
+    "path": "GET_BTLE",
+    "key": "F3TP"
+  },
+  "value_temperatura_sonda_terzo_ventilatore": {
+    "path": "GET_BTLE",
+    "key": "F4TP"
   },
   "value_power_rilevato": {
     "path": "GET_ALLS",
@@ -363,6 +451,14 @@
     "path": "GET_ALLS",
     "key": "F4L"
   },
+  "value_fan_second_setpoint": {
+    "path": "GET_BTLE",
+    "key": "F3SP"
+  },
+  "value_fan_third_setpoint": {
+    "path": "GET_BTLE",
+    "key": "F4SP"
+  },
   "value_fan_limits": {
     "path": "GET_ALLS",
     "key": "FANLMINMAX"
@@ -378,5 +474,75 @@
   "value_status": {
     "path": "GET_ALLS",
     "key": "LSTATUS"
-  }
+  },
+  "value_attivazione_chrono_prodotto": [
+    {
+      "path": "GET_ALLS",
+      "key": "CHRSTATUS",
+      "operator": "eq",
+      "value": 1
+    }
+  ],
+  "value_attivazione_ecomode": [
+    {
+      "path": "GET_ALLS",
+      "key": "BECO",
+      "operator": "eq",
+      "value": 1
+    }
+  ],
+  "flag_tipologia_elettronica_atech": [
+    {
+      "path": "GET_STDT",
+      "key": "MBTYPE",
+      "operator": "in",
+      "value": [
+        0,
+        1,
+        5,
+        6,
+        7
+      ]
+    }
+  ],
+  "flag_tipologia_elettronica_micronova": [
+    {
+      "path": "GET_STDT",
+      "key": "MBTYPE",
+      "operator": "in",
+      "value": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        100
+      ]
+    }
+  ],
+  "flag_pellet_in_riserva": [
+    {
+      "path": "GET_ALLS",
+      "key": "PSENSLEMP",
+      "operator": "eq",
+      "value": 1
+    }
+  ],
+  "flag_presenza_burning_time": [
+    {
+      "path": "GET_STDT",
+      "key": "MBTYPE",
+      "operator": "eq",
+      "value": 0
+    }
+  ],
+  "flag_presenza_service_time": [
+    {
+      "path": "GET_STDT",
+      "key": "MBTYPE",
+      "operator": "eq",
+      "value": 0
+    }
+  ]
 }
